@@ -7,27 +7,32 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+
+    @State var activateScale = false
+    @State var hiddenShirt = true
+    @State var hiddenBuyView = true
+
     var body: some View {
-        VStack {
-            Text("probando")
-            MadridLogoView()
-            Text("probando 2")
-            Spacer()
+        GeometryReader { geometry in
+            ShirtView()
+                .offset(
+                    x: .zero,
+                    y: hiddenBuyView ? .zero : -60
+                )
+            BuyNowView()
+                .opacity(hiddenBuyView ? 0 : 1)
         }
+        .onAppear(perform: {
+            withAnimation(.easeIn(duration: 0.5).delay(ShirtView.totalAnimationDuration)) {
+                hiddenBuyView.toggle()
+            }
+        })
     }
 }
 
+
 #Preview {
     ContentView()
-}
-
-struct CustomCenter: AlignmentID {
-  static func defaultValue(in context: ViewDimensions) -> CGFloat {
-    context[HorizontalAlignment.center]
-  }
-}
-
-extension HorizontalAlignment {
-  static let customCenter: HorizontalAlignment = .init(CustomCenter.self)
 }

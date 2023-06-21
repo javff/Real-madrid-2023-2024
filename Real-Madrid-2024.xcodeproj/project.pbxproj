@@ -18,6 +18,12 @@
 		8F80B1B72A4068840068CA8E /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1B62A4068840068CA8E /* ShapeView.swift */; };
 		8F80B1B92A4069150068CA8E /* UIBaizerPath+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1B82A4069150068CA8E /* UIBaizerPath+extensions.swift */; };
 		8F80B1BB2A4097180068CA8E /* MadridLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1BA2A4097180068CA8E /* MadridLogoView.swift */; };
+		8F80B1BF2A4230F90068CA8E /* MadridFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F80B1BC2A422C000068CA8E /* MadridFont.ttf */; };
+		8F80B1C52A42350E0068CA8E /* SponsorShirtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1C42A42350E0068CA8E /* SponsorShirtView.swift */; };
+		8F80B1C72A4329050068CA8E /* ShirtContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1C62A4329050068CA8E /* ShirtContentView.swift */; };
+		8F80B1CD2A43368D0068CA8E /* ShirtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1CC2A43368D0068CA8E /* ShirtView.swift */; };
+		8F80B1CF2A43380E0068CA8E /* BuyNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1CE2A43380E0068CA8E /* BuyNowView.swift */; };
+		8F80B1D12A4346840068CA8E /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F80B1D02A4346840068CA8E /* Color+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +58,13 @@
 		8F80B1B62A4068840068CA8E /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
 		8F80B1B82A4069150068CA8E /* UIBaizerPath+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBaizerPath+extensions.swift"; sourceTree = "<group>"; };
 		8F80B1BA2A4097180068CA8E /* MadridLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadridLogoView.swift; sourceTree = "<group>"; };
+		8F80B1BC2A422C000068CA8E /* MadridFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MadridFont.ttf; sourceTree = "<group>"; };
+		8F80B1BD2A422C580068CA8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8F80B1C42A42350E0068CA8E /* SponsorShirtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorShirtView.swift; sourceTree = "<group>"; };
+		8F80B1C62A4329050068CA8E /* ShirtContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShirtContentView.swift; sourceTree = "<group>"; };
+		8F80B1CC2A43368D0068CA8E /* ShirtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShirtView.swift; sourceTree = "<group>"; };
+		8F80B1CE2A43380E0068CA8E /* BuyNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyNowView.swift; sourceTree = "<group>"; };
+		8F80B1D02A4346840068CA8E /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,14 +115,15 @@
 		8F80B1892A4067550068CA8E /* Real-Madrid-2024 */ = {
 			isa = PBXGroup;
 			children = (
+				8F80B1CB2A432B600068CA8E /* Paths */,
+				8F80B1CA2A432B590068CA8E /* Commons */,
+				8F80B1C82A432B430068CA8E /* Components */,
+				8F80B1BD2A422C580068CA8E /* Info.plist */,
 				8F80B18A2A4067550068CA8E /* Real_Madrid_2024App.swift */,
 				8F80B18C2A4067550068CA8E /* ContentView.swift */,
 				8F80B18E2A4067560068CA8E /* Assets.xcassets */,
 				8F80B1902A4067560068CA8E /* Preview Content */,
-				8F80B1B42A4068280068CA8E /* LogoPaths.swift */,
-				8F80B1B62A4068840068CA8E /* ShapeView.swift */,
-				8F80B1B82A4069150068CA8E /* UIBaizerPath+extensions.swift */,
-				8F80B1BA2A4097180068CA8E /* MadridLogoView.swift */,
+				8F80B1BC2A422C000068CA8E /* MadridFont.ttf */,
 			);
 			path = "Real-Madrid-2024";
 			sourceTree = "<group>";
@@ -137,6 +151,36 @@
 				8F80B1A72A4067560068CA8E /* Real_Madrid_2024UITestsLaunchTests.swift */,
 			);
 			path = "Real-Madrid-2024UITests";
+			sourceTree = "<group>";
+		};
+		8F80B1C82A432B430068CA8E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8F80B1BA2A4097180068CA8E /* MadridLogoView.swift */,
+				8F80B1C42A42350E0068CA8E /* SponsorShirtView.swift */,
+				8F80B1C62A4329050068CA8E /* ShirtContentView.swift */,
+				8F80B1CC2A43368D0068CA8E /* ShirtView.swift */,
+				8F80B1CE2A43380E0068CA8E /* BuyNowView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8F80B1CA2A432B590068CA8E /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				8F80B1B62A4068840068CA8E /* ShapeView.swift */,
+				8F80B1B82A4069150068CA8E /* UIBaizerPath+extensions.swift */,
+				8F80B1D02A4346840068CA8E /* Color+Extensions.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		8F80B1CB2A432B600068CA8E /* Paths */ = {
+			isa = PBXGroup;
+			children = (
+				8F80B1B42A4068280068CA8E /* LogoPaths.swift */,
+			);
+			path = Paths;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F80B1922A4067560068CA8E /* Preview Assets.xcassets in Resources */,
+				8F80B1BF2A4230F90068CA8E /* MadridFont.ttf in Resources */,
 				8F80B18F2A4067560068CA8E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,12 +314,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F80B1CD2A43368D0068CA8E /* ShirtView.swift in Sources */,
 				8F80B1B52A4068280068CA8E /* LogoPaths.swift in Sources */,
+				8F80B1C72A4329050068CA8E /* ShirtContentView.swift in Sources */,
 				8F80B18D2A4067550068CA8E /* ContentView.swift in Sources */,
 				8F80B1BB2A4097180068CA8E /* MadridLogoView.swift in Sources */,
 				8F80B1B92A4069150068CA8E /* UIBaizerPath+extensions.swift in Sources */,
+				8F80B1CF2A43380E0068CA8E /* BuyNowView.swift in Sources */,
 				8F80B1B72A4068840068CA8E /* ShapeView.swift in Sources */,
 				8F80B18B2A4067550068CA8E /* Real_Madrid_2024App.swift in Sources */,
+				8F80B1D12A4346840068CA8E /* Color+Extensions.swift in Sources */,
+				8F80B1C52A42350E0068CA8E /* SponsorShirtView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +490,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Real-Madrid-2024/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Real-Madrid-2024/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -468,6 +519,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Real-Madrid-2024/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Real-Madrid-2024/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

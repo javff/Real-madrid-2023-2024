@@ -8,9 +8,15 @@
 import Foundation
 import SwiftUI
 
+struct MadridLogoDuration {
+    let roundDuration: CGFloat
+    let crownDuration: CGFloat
+    let paintDuration: CGFloat
+}
+
 struct MadridLogoView: View {
 
-    enum DrawPhases: CaseIterable {
+    private enum DrawPhases: CaseIterable {
         case round
         case crown
         case end
@@ -20,22 +26,6 @@ struct MadridLogoView: View {
             case .round: return 0.5475
             case .crown: return 1.0
             case .end: return 1
-            }
-        }
-
-        var duration: CGFloat {
-            switch self {
-            case .round: return 4
-            case .crown: return 3
-            case .end: return 1
-            }
-        }
-
-        var delay: CGFloat {
-            switch self {
-            case .round: return 0
-            case .crown: return DrawPhases.round.duration
-            case .end: return DrawPhases.round.duration + DrawPhases.crown.duration
             }
         }
     }
@@ -55,6 +45,16 @@ struct MadridLogoView: View {
     @State private var roundFillPhase: Bool = false
     @State private var crownFillPhase: Bool = false
     @State private var startAnimation: Bool = false
+
+    let animationDuration: MadridLogoDuration = .init(
+        roundDuration: 6,
+        crownDuration: 6,
+        paintDuration: 3
+    )
+
+    static var totalAnimationDuration: CGFloat {
+        15
+    }
 
     var body: some View {
         ZStack {
@@ -94,16 +94,16 @@ struct MadridLogoView: View {
 
         .onAppear(perform: {
 
-            withAnimation(.linear(duration: DrawPhases.round.duration)) {
+            withAnimation(.linear(duration: animationDuration.roundDuration)) {
                 self.roundStrokePhase = DrawPhases.round.strokeValue
             }
 
-            withAnimation(.easeIn(duration: DrawPhases.crown.duration).delay(DrawPhases.crown.delay)) {
+            withAnimation(.easeIn(duration: animationDuration.crownDuration).delay(animationDuration.roundDuration)) {
                 self.crownStrokePhase = DrawPhases.crown.strokeValue
                 self.roundStrokePhase = 1
             }
 
-            withAnimation(.linear(duration: DrawPhases.end.duration).delay(DrawPhases.end.delay)) {
+            withAnimation(.linear(duration: animationDuration.paintDuration).delay(animationDuration.roundDuration + animationDuration.crownDuration)) {
                 self.roundFillPhase = true
                 self.crownFillPhase = true
             }
@@ -113,10 +113,4 @@ struct MadridLogoView: View {
 
 #Preview {
     MadridLogoView()
-}
-
-extension Color {
-    static let madridYellow = Color(#colorLiteral(red: 0.996, green: 0.745, blue: 0.063, alpha: 1)) // #febe10
-    static let madridBlue = Color(#colorLiteral(red: 0, green: 0.322, blue: 0.624, alpha: 1)) // #febe10
-    static let madridRed = Color(#colorLiteral(red: 0.933, green: 0.196, blue: 0.306, alpha: 1)) // #ee324e
 }
