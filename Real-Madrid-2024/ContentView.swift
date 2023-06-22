@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
 
     @State var activateScale = false
     @State var hiddenShirt = true
     @State var hiddenBuyView = true
+    @State var logoJumpingActivate = false
 
     var shirtDuration: ShirtDuration {
         .init(
@@ -33,7 +33,7 @@ struct ContentView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ShirtView(shirtDuration: shirtDuration)
+            ShirtView(madridLogoJumpingActivate: $logoJumpingActivate, shirtDuration: shirtDuration)
                 .offset(
                     x: .zero,
                     y: hiddenBuyView ? .zero : -60
@@ -42,8 +42,14 @@ struct ContentView: View {
                 .opacity(hiddenBuyView ? 0 : 1)
         }
         .onAppear(perform: {
-            withAnimation(.easeIn(duration: 0.5).delay(shirtDuration.totalAnimationDuration)) {
-                hiddenBuyView.toggle()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(shirtDuration.totalAnimationDuration))) {
+
+                withAnimation(.easeIn(duration: 0.5)) {
+                    hiddenBuyView.toggle()
+                    logoJumpingActivate.toggle()
+                }
+
             }
         })
     }

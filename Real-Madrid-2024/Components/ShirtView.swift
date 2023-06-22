@@ -21,6 +21,7 @@ struct ShirtDuration {
 struct ShirtView: View {
     @State var activateScale = false
     @State var hiddenShirt = true
+    @Binding var madridLogoJumpingActivate: Bool
 
     let shirtDuration: ShirtDuration
 
@@ -36,8 +37,13 @@ struct ShirtView: View {
                             y: geometry.frame(in: .local).midY - 30
                         )
                     )
-                ShirtContentView(shirtContentDuration: shirtDuration.shirtContentDuration)
-                    .scaleEffect(activateScale ? 0.5 : 1)
+                ShirtContentView(
+                    madridLogoJumpingActivate: $madridLogoJumpingActivate,
+                    shirtContentDuration: shirtDuration.shirtContentDuration
+                )
+                .scaleEffect(
+                    activateScale ? 0.5 : 1
+                )
                 
             }
             .padding()
@@ -56,6 +62,7 @@ struct ShirtView: View {
 
 #Preview {
     ShirtView(
+        madridLogoJumpingActivate: .constant(true),
         shirtDuration: .init(
             shirtContentDuration: .init(
                 madridLogoAppearDuration: .init(
