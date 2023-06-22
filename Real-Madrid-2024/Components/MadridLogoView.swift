@@ -12,6 +12,10 @@ struct MadridLogoDuration {
     let roundDuration: CGFloat
     let crownDuration: CGFloat
     let paintDuration: CGFloat
+
+    var totalAnimationDuration: CGFloat {
+        roundDuration + crownDuration + paintDuration
+    }
 }
 
 struct MadridLogoView: View {
@@ -30,7 +34,7 @@ struct MadridLogoView: View {
         }
     }
 
-    private static let size: CGRect = {
+    private let logoSize: CGRect = {
         UIBezierPath.calculateBounds(paths: [
             LogoPaths.path2(),
             LogoPaths.path3(),
@@ -46,21 +50,13 @@ struct MadridLogoView: View {
     @State private var crownFillPhase: Bool = false
     @State private var startAnimation: Bool = false
 
-    let animationDuration: MadridLogoDuration = .init(
-        roundDuration: 6,
-        crownDuration: 6,
-        paintDuration: 3
-    )
-
-    static var totalAnimationDuration: CGFloat {
-        15
-    }
+    let animationDuration: MadridLogoDuration
 
     var body: some View {
         ZStack {
             ShapeView(
                 bezier: LogoPaths.path2(),
-                pathBounds: MadridLogoView.size
+                pathBounds: logoSize
             )
             .trim(from: 0, to: crownStrokePhase)
             .stroke(Color.madridRed)
@@ -68,7 +64,7 @@ struct MadridLogoView: View {
 
             ShapeView(
                 bezier: LogoPaths.path3(),
-                pathBounds: MadridLogoView.size
+                pathBounds: logoSize
             )
             .trim(from: 0, to: crownStrokePhase)
             .stroke(Color.madridRed)
@@ -76,7 +72,7 @@ struct MadridLogoView: View {
 
             ShapeView(
                 bezier: LogoPaths.path4(),
-                pathBounds: MadridLogoView.size
+                pathBounds: logoSize
             )
             .trim(from: 0, to: crownStrokePhase)
             .stroke(Color.madridYellow)
@@ -84,7 +80,7 @@ struct MadridLogoView: View {
 
             ShapeView(
                 bezier: LogoPaths.path5(),
-                pathBounds: MadridLogoView.size
+                pathBounds: logoSize
             )
             .trim(from: 0, to: roundStrokePhase)
             .stroke(roundFillPhase ? Color.clear : Color.madridBlue)
@@ -95,22 +91,22 @@ struct MadridLogoView: View {
         .onAppear(perform: {
 
             withAnimation(.linear(duration: animationDuration.roundDuration)) {
-                self.roundStrokePhase = DrawPhases.round.strokeValue
+                roundStrokePhase = DrawPhases.round.strokeValue
             }
 
             withAnimation(.easeIn(duration: animationDuration.crownDuration).delay(animationDuration.roundDuration)) {
-                self.crownStrokePhase = DrawPhases.crown.strokeValue
-                self.roundStrokePhase = 1
+                crownStrokePhase = DrawPhases.crown.strokeValue
+                roundStrokePhase = 1
             }
 
             withAnimation(.linear(duration: animationDuration.paintDuration).delay(animationDuration.roundDuration + animationDuration.crownDuration)) {
-                self.roundFillPhase = true
-                self.crownFillPhase = true
+                roundFillPhase = true
+                crownFillPhase = true
             }
         })
     }
 }
 
 #Preview {
-    MadridLogoView()
+    MadridLogoView(animationDuration: .init(roundDuration: 6, crownDuration: 6, paintDuration: 3))
 }

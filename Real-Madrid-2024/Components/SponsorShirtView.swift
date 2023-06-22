@@ -9,12 +9,13 @@ import SwiftUI
 
 struct SponsorShirtView: View {
     var body: some View {
-        VStack {
+        VStack() {
             Text("Emirates")
-                .font(Font.custom("LaLiga23-24", size: 80))
+                .font(Font.custom("Emirates", size: 64))
                 .foregroundStyle(Color.madridShirtBlue)
-            Text("Fly Better")
-                .font(Font.custom("LaLiga23-24", size: 64))
+
+            Text("FLY BETTER")
+                .font(Font.custom("Emirates", size: 48))
                 .foregroundStyle(Color.madridShirtBlue)
         }
     }

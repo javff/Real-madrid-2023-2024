@@ -14,4 +14,12 @@ struct Real_Madrid_2024App: App {
             ContentView()
         }
     }
+
+    init() {
+        for (index, family) in UIFont.familyNames.sorted().enumerated() {
+                   let names = UIFont.fontNames(forFamilyName: family)
+            print(index)
+                   print("Family: \(family) Font names: \(names)")
+               }
+    }
 }

@@ -7,24 +7,26 @@
 
 import SwiftUI
 
+struct ShirtContentDuration {
+    let madridLogoAppearDuration: MadridLogoDuration
+    let madridLogoTransition: CGFloat
+    let sponsorLogoDuration: CGFloat
+
+    var totalAnimationDuration: CGFloat {
+        madridLogoAppearDuration.totalAnimationDuration + madridLogoTransition + sponsorLogoDuration
+    }
+}
+
 struct ShirtContentView: View {
     private struct MadridAnimationValues {
-        var baseScale: CGFloat
+        var scale: CGFloat
         var position: CGPoint
     }
 
     @State var isHiddenMadridLogo = true
     @State var isHiddenAdidasLogo = true
 
-    private var madridTransitionDuration: CGFloat = 1.2
-
-    var totalShirtDuration: CGFloat {
-        MadridLogoView.totalAnimationDuration
-    }
-
-    static var totalAnimationDuration: CGFloat {
-        MadridLogoView.totalAnimationDuration + 1.2 + 1
-    }
+    let shirtContentDuration: ShirtContentDuration
 
     var body: some View {
         GeometryReader { geometry in
@@ -40,10 +42,10 @@ struct ShirtContentView: View {
                     y: geometry.frame(in: .local).minY + 70
                 ))
 
-            MadridLogoView()
+            MadridLogoView(animationDuration: shirtContentDuration.madridLogoAppearDuration)
             .keyframeAnimator(
                 initialValue: MadridAnimationValues(
-                    baseScale: 1,
+                    scale: 1,
                     position: .init(
                         x: geometry.frame(in: .local).midX,
                         y: geometry.frame(in: .local).midY
@@ -52,12 +54,12 @@ struct ShirtContentView: View {
                 trigger: isHiddenMadridLogo,
                 content: { content, value in
                     content
-                        .scaleEffect(value.baseScale)
+                        .scaleEffect(value.scale)
                         .position(value.position)
                 }, keyframes: { _ in
-                    KeyframeTrack(\.baseScale) {
-                        CubicKeyframe(0.6, duration: madridTransitionDuration / 2)
-                        CubicKeyframe(0.3, duration: madridTransitionDuration / 2)
+                    KeyframeTrack(\.scale) {
+                        CubicKeyframe(0.6, duration: shirtContentDuration.madridLogoTransition / 2)
+                        CubicKeyframe(0.3, duration: shirtContentDuration.madridLogoTransition / 2)
                     }
 
                     KeyframeTrack(\.position) {
@@ -66,7 +68,7 @@ struct ShirtContentView: View {
                                 x: geometry.frame(in: .local).maxX - 70,
                                 y: geometry.frame(in: .local).minY + 70
                             ),
-                            duration: madridTransitionDuration
+                            duration: shirtContentDuration.madridLogoTransition
                         )
                     }
                 }
@@ -76,17 +78,17 @@ struct ShirtContentView: View {
                 .opacity(isHiddenAdidasLogo ? 0 : 1)
                 .position(.init(
                     x: geometry.frame(in: .local).midX,
-                    y: geometry.frame(in: .local).midY
+                    y: geometry.frame(in: .local).minY + 200
                 ))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear(perform: {
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(totalShirtDuration))) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(shirtContentDuration.madridLogoAppearDuration.totalAnimationDuration))) {
                 isHiddenMadridLogo.toggle()
             }
 
-            withAnimation(.easeIn(duration: 1).delay(totalShirtDuration + madridTransitionDuration)) {
+            withAnimation(.easeIn(duration: shirtContentDuration.sponsorLogoDuration).delay(shirtContentDuration.madridLogoAppearDuration.totalAnimationDuration + shirtContentDuration.madridLogoTransition)) {
                 isHiddenAdidasLogo.toggle()
             }
         })
@@ -94,5 +96,15 @@ struct ShirtContentView: View {
 }
 
 #Preview {
-    ShirtContentView()
+    ShirtContentView(
+        shirtContentDuration: .init(
+            madridLogoAppearDuration: .init(
+                roundDuration: 6,
+                crownDuration: 6,
+                paintDuration: 3
+            ),
+            madridLogoTransition: 1.2,
+            sponsorLogoDuration: 1
+        )
+    )
 }
