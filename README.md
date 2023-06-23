@@ -84,4 +84,13 @@ To create the button view, follow these steps:
 
 # Putting all the pieces together
 
-Lorem it sum lorem it sum Lorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sumLorem it sum lorem it sum
+We will now put everything together.
+
+1. Within a `GeometryReader`, instantiate the `ShirtView` and the `ButtonView`, with the `ButtonView` initially hidden.
+2. Allow the entrance animation of the `ShirtView` to complete.
+3. Use the `offset` modifier to move the `ShirtView` slightly upward.
+4. Simultaneously, make the `ButtonView` visible.
+
+**Pro tip**: To add a final touch and enhance the visual appeal, activate the animation of the Real Madrid logo within the `ShirtContentView` using the `KeyframeAnimator`.
+
+By enabling this animation, you can bring the Real Madrid logo to life, adding a dynamic element that further enhances the overall composition.
